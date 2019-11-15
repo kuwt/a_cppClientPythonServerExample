@@ -1,3 +1,7 @@
+#
+# Written by kuwingto, 15 Nov 2019
+#
+
 import os
 import math
 import random

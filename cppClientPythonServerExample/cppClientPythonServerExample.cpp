@@ -1,5 +1,6 @@
-// cppClientPythonServerExample.cpp : Defines the entry point for the console application.
-//
+/* 
+* Written by kuwingto, 15 Nov 2019
+*/
 
 #include "stdafx.h"
 #include <string.h>
