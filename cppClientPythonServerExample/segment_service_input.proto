@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message segment_service_input {
+    uint32 class_id = 1;
+
+    message Mat {
+        uint32 width = 1;
+        uint32 height = 2;
+        bytes image_data = 3;
+    }
+    
+    Mat img = 2;
+}
