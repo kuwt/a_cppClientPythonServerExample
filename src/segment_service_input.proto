@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message my_message {
+    uint32 class_id = 1;
+    uint32 num_of_images = 2;
+    
+    message Mat {
+        uint32 width = 1;
+        uint32 height = 2;
+        bytes image_data = 3;
+    }
+    
+    Mat img = 3;
+}
