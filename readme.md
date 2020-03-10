@@ -15,7 +15,7 @@ User Guide:
 
 1. Prepare all the library both in python environment and c++ environment.
 
-2. Use protoc to make the C++ header, cpp and .py
+2. Use protoc to make the C++ header, cpp and .py\
     protoc --cpp_out=. my_message.proto\
     protoc --python_out=. my_message.proto
     
