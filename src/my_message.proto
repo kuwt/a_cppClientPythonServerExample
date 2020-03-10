@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-message segment_service_input {
+message my_message {
     uint32 class_id = 1;
 
     message Mat {

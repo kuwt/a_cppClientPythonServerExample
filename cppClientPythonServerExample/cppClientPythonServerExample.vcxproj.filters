@@ -24,7 +24,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="segment_service_input.pb.h">
+    <ClInclude Include="..\src\my_message.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cppClientPythonServerExample.cpp">
+    <ClCompile Include="..\src\client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="segment_service_input.pb.cc">
+    <ClCompile Include="..\src\my_message.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,15 +1,14 @@
 /* 
-* Written by kuwingto, 15 Nov 2019
+* Written by kuwingto, 10 March 2019
 */
 
-#include "stdafx.h"
 #include <string.h>
 #include <stdio.h>
 #include <chrono>  // for high_resolution_clock
 #include <math.h>
 #include <opencv2/opencv.hpp>
 #include <zmq.hpp>
-#include "segment_service_input.pb.h"
+#include "my_message.pb.h"
 
 int main()
 {
@@ -22,13 +21,13 @@ int main()
 	m_pSock->connect("tcp://localhost:5555");
 	int linger = 0;
 	m_pSock->setsockopt(ZMQ_LINGER, &linger, sizeof(linger));
-	
+
 	cv::Mat img;
-	img = cv::imread("0036.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	img = cv::imread("../data/test.bmp", CV_LOAD_IMAGE_GRAYSCALE);
 	
-	segment_service_input sendPack;
+	my_message sendPack;
 	sendPack.set_class_id(0);
-	segment_service_input_Mat sendMat;
+	my_message_Mat sendMat;
 	sendMat.set_width(img.size().width);
 	sendMat.set_height(img.size().height);
 	sendMat.set_image_data((char *)img.data, sizeof(uchar) * img.size().width * img.size().height);
@@ -62,7 +61,7 @@ int main()
 			//std::cout << msgStr << "\n";
 			
 			//unserialize
-			segment_service_input out;
+			my_message out;
 			out.ParseFromString(msgStr);
 
 			int class_id = out.class_id();
@@ -90,13 +89,15 @@ int main()
 		m_pSock->connect("tcp://localhost:5555");
 		int linger = 0;
 		m_pSock->setsockopt(ZMQ_LINGER, &linger, sizeof(linger));
-		
-		return -1;
+
 	}
 
+
 	std::cout << "press to continue \n";
-	delete m_pSock;
 	getchar();
+
+	m_pSock->close();
+	delete m_pSock;
     return 0;
 }
 

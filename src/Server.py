@@ -1,5 +1,5 @@
 #
-# Written by kuwingto, 15 Nov 2019
+# Written by kuwingto, 10 March 2020
 #
 
 import os
@@ -15,7 +15,7 @@ import sys
 import time
 
 import zmq
-import segment_service_input_pb2
+import my_message_pb2
 
 context = zmq.Context()
 socket = context.socket(zmq.REP)
@@ -36,7 +36,7 @@ if __name__ == '__main__' :
     ser = segmentationServer()
     
      # Here For demonstration, we read a image to the buffer and will send back to CLient
-    outimage = cv2.imread("./segmentation.bmp", cv2.IMREAD_GRAYSCALE)
+    outimage = cv2.imread("../data/segmentation.bmp", cv2.IMREAD_GRAYSCALE)
     
     while True:
         print("waiting connection")
@@ -46,15 +46,15 @@ if __name__ == '__main__' :
             start = time()
             
             #input 
-            segment_service_input = segment_service_input_pb2.segment_service_input()
-            segment_service_input.ParseFromString(message)
-            print("class_id = " , segment_service_input.class_id)
-            print("image width = ", segment_service_input.img.width)
-            print("image height = ", segment_service_input.img.height)
-            #print(type(segment_service_input.img.image_data))
-            nparr = np.frombuffer(segment_service_input.img.image_data,dtype=np.ubyte)
+            my_message_input = my_message_pb2.my_message()
+            my_message_input.ParseFromString(message)
+            print("class_id = " , my_message_input.class_id)
+            print("image width = ", my_message_input.img.width)
+            print("image height = ", my_message_input.img.height)
+            #print(type(my_message_input.img.image_data))
+            nparr = np.frombuffer(my_message_input.img.image_data,dtype=np.ubyte)
             print("data shape = ",nparr.shape)
-            img = nparr.reshape(segment_service_input.img.height,segment_service_input.img.width)
+            img = nparr.reshape(my_message_input.img.height,my_message_input.img.width)
             print("image shape = ",img.shape)
             
             #uncomment show the image
@@ -67,12 +67,12 @@ if __name__ == '__main__' :
             
             
             #output
-            segment_service_output = segment_service_input_pb2.segment_service_input()
-            segment_service_output.class_id = segment_service_input.class_id
-            segment_service_output.img.width = segment_service_input.img.width
-            segment_service_output.img.height = segment_service_input.img.height
-            segment_service_output.img.image_data = outimage.tobytes() 
-            str = segment_service_output.SerializeToString()
+            my_message_output = my_message_pb2.my_message()
+            my_message_output.class_id = my_message_input.class_id
+            my_message_output.img.width = my_message_input.img.width
+            my_message_output.img.height = my_message_input.img.height
+            my_message_output.img.image_data = outimage.tobytes() 
+            str = my_message_output.SerializeToString()
             socket.send(str)
         else:
             print("error message")
