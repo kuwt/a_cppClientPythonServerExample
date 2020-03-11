@@ -26,7 +26,7 @@ int main()
 	img = cv::imread("../data/test.bmp", CV_LOAD_IMAGE_GRAYSCALE);
 	
 	my_message sendPack;
-	sendPack.set_class_id(1);
+	sendPack.set_class_id(3);
 	sendPack.set_num_of_images(1);
 
 	my_message_Mat sendMat;

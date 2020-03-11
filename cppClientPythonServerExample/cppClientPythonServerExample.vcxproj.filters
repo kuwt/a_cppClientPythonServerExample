@@ -27,6 +27,9 @@
     <ClInclude Include="..\src\my_message.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\my_message_multi.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +39,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\my_message.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\client_multi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\my_message_multi.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

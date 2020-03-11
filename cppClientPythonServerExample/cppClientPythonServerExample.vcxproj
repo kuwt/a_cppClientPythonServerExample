@@ -152,12 +152,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\my_message.pb.h" />
+    <ClInclude Include="..\src\my_message_multi.pb.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\client.cpp" />
+    <ClCompile Include="..\src\client_multi.cpp" />
     <ClCompile Include="..\src\my_message.pb.cc" />
+    <ClCompile Include="..\src\my_message_multi.pb.cc" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
