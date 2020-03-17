@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BD9B07B5-84DD-4FA4-815D-F8E911D35A56}</ProjectGuid>
+    <ProjectGuid>{618E29A2-E583-4632-9FDA-688980BF7D7B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>cppClientPythonServerExample</RootNamespace>
+    <RootNamespace>vs_cpp_segmentClient</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -64,14 +64,14 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\CommonPropertySheets\protobufDebug.props" />
     <Import Project="..\CommonPropertySheets\OpenCVPropertySheetDebug346c.props" />
+    <Import Project="..\CommonPropertySheets\protobufDebug.props" />
     <Import Project="..\CommonPropertySheets\zmqDebug.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\CommonPropertySheets\protobuf.props" />
     <Import Project="..\CommonPropertySheets\OpenCVPropertySheetRelease346c.props" />
+    <Import Project="..\CommonPropertySheets\protobuf.props" />
     <Import Project="..\CommonPropertySheets\zmqRelease.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -151,16 +151,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\my_message.pb.h" />
-    <ClInclude Include="..\src\my_message_multi.pb.h" />
+    <ClInclude Include="..\src\segment_service_input.pb.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\client.cpp" />
-    <ClCompile Include="..\src\client_multi.cpp" />
-    <ClCompile Include="..\src\my_message.pb.cc" />
-    <ClCompile Include="..\src\my_message_multi.pb.cc" />
+    <ClCompile Include="..\src\client_segmentationService.cpp" />
+    <ClCompile Include="..\src\segment_service_input.pb.cc" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

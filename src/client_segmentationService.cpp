@@ -84,6 +84,7 @@ int main()
 
 				cv::imshow("img" + std::to_string(i), img);
 				cv::waitKey(0);
+				cv::imwrite("img" + std::to_string(i) + ".bmp", img);
 			}	
 		}
 		else

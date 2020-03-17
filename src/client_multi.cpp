@@ -10,7 +10,7 @@
 #include <zmq.hpp>
 #include "my_message_multi.pb.h"
 
-int main_1()
+int main()
 {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
 	zmq::context_t m_context = zmq::context_t(1);
