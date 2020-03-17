@@ -22,6 +22,7 @@ int main()
 	int linger = 0;
 	m_pSock->setsockopt(ZMQ_LINGER, &linger, sizeof(linger));
 
+	/****** prepare send material  **********/
 	cv::Mat img;
 	img = cv::imread("../data/test.bmp", CV_LOAD_IMAGE_GRAYSCALE);
 	
@@ -38,18 +39,14 @@ int main()
 
 	std::string s = sendPack.SerializeAsString();
 	std::cout << "s.size() = " << s.size() << "\n";
-	/***********************
-	//  Send
-	**********************/
+	/******  send material  **********/
 	{
 		zmq::message_t message(s.size());
 		memcpy(message.data(), s.data(), s.size());
 		m_pSock->send(message);
 	}
-	/***********************
-	// get reply
-	**********************/
-	zmq::pollitem_t items[] = { { *m_pSock, 0, ZMQ_POLLIN, 0 } };
+	/****** get reply **********/
+	zmq::pollitem_t items[] = { { *m_pSock, 0, ZMQ_POLLIN, 0 } };	 // support timeout by poll
 	zmq::poll(&items[0], 1, 5 * 1000);
 
 	if (items[0].revents & ZMQ_POLLIN)
@@ -57,10 +54,8 @@ int main()
 		zmq::message_t reply;
 		if (m_pSock->recv(&reply, 0))
 		{
-			
 			std::string  msgStr = std::string((char*)reply.data(), reply.size());
 			//std::cout << msgStr << "\n";
-			
 			//unserialize
 			my_message_multi out;
 			out.ParseFromString(msgStr);
@@ -93,9 +88,7 @@ int main()
 		m_pSock->connect("tcp://localhost:5555");
 		int linger = 0;
 		m_pSock->setsockopt(ZMQ_LINGER, &linger, sizeof(linger));
-
 	}
-
 
 	std::cout << "press to continue \n";
 	getchar();
